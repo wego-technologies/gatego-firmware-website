@@ -40,7 +40,7 @@ function FirmwareDetails({ release }) {
           <text className={styles.details}>The gatego team</text>
 
           <h3>Download</h3>
-          <a onClick={undefined} className={styles.a}>Download</a>
+          <a href={"/api/getRelease/" + release.assets[0].id} className={styles.a}>Download</a>
         </div>
 
       </div>
@@ -105,7 +105,7 @@ export async function getStaticProps({params}) {
     release.body_html = unified()
     .use(parse)
     .use(remark2react)
-    .processSync(release.body).toString();
+    .processSync(release.body == "" ? "There is no changelog available for this version" : release.body).toString();
 
     return { 
       props: { release },
