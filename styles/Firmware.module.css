@@ -40,7 +40,7 @@
   text-decoration: none;
 }
 
-.td a {
+.a {
   color: #00a1d3;
   text-decoration: none;
   text-align: center;
@@ -54,7 +54,7 @@
   border-radius: 100rem;
 }
 
-.td a:hover {
+.a:hover {
   color: #ffffff;
   background-color: #00a1d3;
 }
@@ -63,6 +63,17 @@
 .title a:focus,
 .title a:active {
   text-decoration: underline;
+}
+
+.td {
+  margin: 10px;
+  padding-top: 25px;
+  padding-right: 50px;
+}
+
+.td,
+.th {
+  text-align: left;
 }
 
 .title {
@@ -79,9 +90,42 @@
 .description {
   line-height: 1.5;
   font-size: 1.5rem;
+}
+
+.details {
   white-space: pre-line;
+  text-align: start;
+  font-size: 1.1rem;
+}
+
+.card {
+  margin: 1rem;
+  flex-basis: 45%;
+  padding: 1.5rem;
+  text-align: left;
+  color: inherit;
+  text-decoration: none;
+  border: 1px solid #cacaca;
+  border-radius: 10px;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 800px;
+  margin-top: 1.5rem;
 }
 
 .logo {
   height: 1em;
+}
+
+@media (max-width: 600px) {
+  .grid {
+    width: 100%;
+    flex-direction: column;
+  }
 }

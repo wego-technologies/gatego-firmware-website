@@ -4,16 +4,13 @@ import styles from '../../styles/Firmware.module.css'
 import {LatestRelease, Deprecated} from '../../components/tags'
 import React from 'react';
 import Head from 'next/head';
+import unified from 'unified';
+import parse from 'remark-parse';
+import remark2react from 'remark-react';
+import {DateTime} from 'luxon'
+
 
 function FirmwareDetails({ release }) {
-
-  console.log(release.body);
-
-  const body = release.body
-
-  console.log(body);
-  
-  
   return <div className={styles.container}>
       <Head>
         <title>Gatego Firmware</title>
@@ -24,9 +21,30 @@ function FirmwareDetails({ release }) {
         <h1 className={styles.title}>
           <a href="/">Gatego Firmware</a> Version {release.tag_name}
         </h1>
-      </main>
+        <p className={styles.description}>
+          See all the details regarding version {release.tag_name}
+        </p>
 
-      <text className={styles.description}>{body}</text>
+        <h1>{release.name} {release.prerelease ? <Deprecated/> : ""}</h1>
+      <div className={styles.grid}>
+        <div className={styles.card}>
+          <h2>Changes</h2>
+          <text className={styles.details}>{release.body_html}</text>
+        </div>
+
+        <div className={styles.card}>
+          <h3>Released on</h3>
+          <text className={styles.details}>{release.published_at}</text>
+
+          <h3>Released by</h3>
+          <text className={styles.details}>The gatego team</text>
+
+          <h3>Download</h3>
+          <a onClick={getFile(release.assets[0].id)} className={styles.a}>Download</a>
+        </div>
+
+      </div>
+      </main>
 
       <footer className={styles.footer}>
         <a
@@ -49,7 +67,7 @@ export async function getStaticPaths() {
 
     var data = await octokit.rest.repos.listReleases({
       owner: "wego-technologies", 
-      repo: "unified-firmware",
+      repo: "gatego-Unified",
     })
 
     const paths = data.data.map((release) => ({
@@ -76,11 +94,18 @@ export async function getStaticProps({params}) {
 
     var data = await octokit.rest.repos.getRelease({
       owner: "wego-technologies", 
-      repo: "unified-firmware",
+      repo: "gatego-Unified",
       release_id: params.id
     })
 
-    const release = data.data;  
+    var release = data.data;  
+
+    release.published_at = DateTime.fromISO(release.published_at).toLocaleString(DateTime.DATETIME_MED)
+
+    release.body_html = unified()
+    .use(parse)
+    .use(remark2react)
+    .processSync(release.body).toString();
 
     return { 
       props: { release },

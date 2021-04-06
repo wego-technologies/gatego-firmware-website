@@ -70,7 +70,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
     await octokit.rest.repos.listReleases({
       owner: "wego-technologies", 
-      repo: "unified-firmware",
+      repo: "gatego-Unified",
     }) .then(({ data }) => {
       
       releases = data.map((release) =>{
