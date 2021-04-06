@@ -1,0 +1,26 @@
+.deprecated {
+  background-color: #fff7eb;
+  border-color: #ff9900;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 100rem;
+  color: #ff9900;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.latest {
+  background-color: #eaffdd;
+  border-color: #00d323;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 100rem;
+  color: #00d323;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  white-space: nowrap;
+}
