@@ -40,7 +40,7 @@ function FirmwareDetails({ release }) {
           <text className={styles.details}>The gatego team</text>
 
           <h3>Download</h3>
-          <a onClick={getFile(release.assets[0].id)} className={styles.a}>Download</a>
+          <a onClick={undefined} className={styles.a}>Download</a>
         </div>
 
       </div>
