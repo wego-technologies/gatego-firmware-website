@@ -11,6 +11,37 @@ import {DateTime} from 'luxon'
 
 
 function FirmwareDetails({ release }) {
+
+  const router = useRouter()
+
+  // If the page is not yet generated, this will be displayed
+  // initially until getStaticProps() finishes running
+  if (router.isFallback) {
+    return <div className={styles.container}>
+      <Head>
+        <title>Gatego Firmware</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
+      <main className={styles.main}>
+        <h1 className={styles.title}>
+          <a href="/">Gatego Firmware</a> Loading Version...
+        </h1>
+      </main>
+
+      <footer className={styles.footer}>
+        <a
+          href="https://gatego.io"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          By{' '}
+          <img src="/gatego.svg" alt="Gatego logo" className={styles.logo} />
+        </a>
+      </footer>
+    </div>
+  }
+
   return <div className={styles.container}>
       <Head>
         <title>Gatego Firmware</title>
