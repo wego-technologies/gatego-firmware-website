@@ -116,6 +116,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     props: {
       releases,
     },
+    revalidate: 60
   }
 }
 
