@@ -24,22 +24,17 @@ function Firmware({releases}) {
           Here you can download see the previous versions of firmware.
         </p>
 
-         <table className={styles.table}>
-          <tr>
-            <th className={styles.th}>Version</th>
-            <th className={styles.th}>Release Date</th>
-            <th className={styles.th}>Download</th>
-            <th className={styles.th}>Details</th>
-          </tr>
+         <table className={styles.grid}>
           {
           releases.map(release => {
 
-            return <tr>
-              <td className={styles.td}>{release.tag_name} {release.deprecated ? <Deprecated/> : ""}{release.latest ? <LatestRelease/> : ""}</td>
-              <td className={styles.td}>{release.published_at}</td>
-              <td className={styles.td}><a href={release.link} className={styles.a}>Download</a></td>
-              <td className={styles.td}><a href={"/firmware/" + release.id} className={styles.a}>View Details</a></td>
-            </tr>;
+            return <div className={styles.card}>
+              <div className={styles.description}>Version {release.tag_name}</div>
+              <div className={styles.indicator}>{release.deprecated ? <Deprecated/> : ""}{release.latest ? <LatestRelease/> : ""}</div>
+              <div className={styles.indicator}>{release.published_at}</div>
+              <div className={styles.buttons}><a href={release.link} className={styles.a}>Download</a><a href={"/firmware/" + release.id} className={styles.a}>View Details</a></div>
+              <div className={styles.padding}></div>
+            </div>;
 
           })}
         </table> 
