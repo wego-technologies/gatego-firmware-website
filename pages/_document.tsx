@@ -8,16 +8,16 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <Html>
-        <Head />
-        <script>0</script>
-        <body>
-          <Main />
-          <NextScript />
-        </body>
-      </Html>
-    )
-  }
+        <Html>
+            <Head />
+            <body>
+                <script>0</script>
+                <Main />
+                <NextScript />
+            </body>
+            </Html>
+        )
+    }
 }
 
 export default MyDocument
