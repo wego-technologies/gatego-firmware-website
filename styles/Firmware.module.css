@@ -103,6 +103,7 @@
   flex-basis: 45%;
   padding: 1.5rem;
   text-align: left;
+  align-self: start;
   color: inherit;
   text-decoration: none;
   border: 1px solid #cacaca;
