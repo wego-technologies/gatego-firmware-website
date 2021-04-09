@@ -5,6 +5,7 @@ import styles from '../../styles/Firmware.module.css'
 import {LatestRelease, Deprecated} from '../../components/tags'
 import { DateTime } from 'luxon';
 import { useEffect } from 'react';
+import Link from 'next/link'
 
 function Firmware({releases}) {
 
@@ -17,7 +18,7 @@ function Firmware({releases}) {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          <a href="/">Gatego Firmware</a> History
+          <Link href="/">Gatego Firmware</Link> History
         </h1>
 
         <p className={styles.description}>
@@ -28,11 +29,11 @@ function Firmware({releases}) {
           {
           releases.map(release => {
 
-            return <div className={styles.card}>
+            return <div className={styles.card} key={release.id}>
               <div className={styles.description}>Version {release.tag_name}</div>
               <div className={styles.indicator}>{release.deprecated ? <Deprecated/> : ""}{release.latest ? <LatestRelease/> : ""}</div>
               <div className={styles.indicator}>{release.published_at}</div>
-              <div className={styles.buttons}><a href={release.link} className={styles.a}>Download</a><a href={"/firmware/" + release.id} className={styles.a}>View Details</a></div>
+              <div className={styles.buttons}><a href={release.link} className={styles.a}>Download</a><Link href={"/firmware/" + release.id}><a className={styles.a}>View Details</a></Link></div>
             </div>;
 
           })}

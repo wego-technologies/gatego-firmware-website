@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Link from 'next/link'
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
@@ -11,7 +12,7 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          <a href="/">Gatego Firmware</a> Homepage
+          <Link href="/">Gatego Firmware</Link> Homepage
         </h1>
 
         <p className={styles.description}>
@@ -24,10 +25,12 @@ export default function Home() {
             <p>Get the latest version of the firmware by clicking here.</p>
           </a>
 
-          <a href="/firmware" className={styles.card}>
-            <h3>History &rarr;</h3>
-            <p>Get past gatego firmware versions here. Not Recommended.</p>
-          </a>
+          <Link href="/firmware">
+            <a className={styles.card}>
+              <h3>History &rarr;</h3>
+              <p>Get past gatego firmware versions here. Not Recommended.</p>
+            </a>
+          </Link>
 
           <a href="https://gatego.io" className={styles.card}>
             <h3>Gatego Home &rarr;</h3>

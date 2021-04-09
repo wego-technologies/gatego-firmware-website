@@ -8,6 +8,7 @@ import unified from 'unified';
 import parse from 'remark-parse';
 import remark2react from 'remark-react';
 import {DateTime} from 'luxon'
+import Link from 'next/link'
 
 
 function FirmwareDetails({ release }) {
@@ -25,7 +26,7 @@ function FirmwareDetails({ release }) {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          <a href="/">Gatego Firmware</a> Loading Version...
+          <Link href="/">Gatego Firmware</Link> Loading Version...
         </h1>
       </main>
 
@@ -50,7 +51,7 @@ function FirmwareDetails({ release }) {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          <a href="/">Gatego Firmware</a> Version {release.tag_name}
+          <Link href="/">Gatego Firmware</Link> Version {release.tag_name}
         </h1>
         <p className={styles.description}>
           See all the details regarding version {release.tag_name}
