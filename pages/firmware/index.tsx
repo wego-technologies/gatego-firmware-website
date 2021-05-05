@@ -74,7 +74,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
       var id = "#";
       if (release.assets.length != 0) {
-        id = release.assets[0].id
+        id = release.assets[0].id.toString()
       }
 
       if (index == 0) {
