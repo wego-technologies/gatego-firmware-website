@@ -33,7 +33,7 @@ function Firmware({ releases }) {
                 <div className={styles.description}>Version {release.tag_name}</div>
                 <div className={styles.indicator}>{release.deprecated ? <Deprecated /> : ""}{release.latest ? <LatestRelease /> : ""}</div>
                 <div className={styles.indicator}>{release.published_at}</div>
-                <div className={styles.buttons}><a href={"/api/getRelease/" + release.assets[0].id} className={styles.a}>Download</a><Link href={"/firmware/" + release.id}><a className={styles.a}>View Details</a></Link></div>
+                <div className={styles.buttons}><a href={"/api/getRelease/" + release.assetId} className={styles.a}>Download</a><Link href={"/firmware/" + release.id}><a className={styles.a}>View Details</a></Link></div>
               </div>;
 
             })}
@@ -72,9 +72,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
       var index = data.indexOf(release)
       var latest = false;
 
-      var link = "#";
+      var id = "#";
       if (release.assets.length != 0) {
-        link = release.assets[0].browser_download_url
+        id = release.assets[0].id
       }
 
       if (index == 0) {
@@ -82,7 +82,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
       }
 
       return {
-        "link": link,
+        "assetId": id,
         "tag_name": release.tag_name,
         "published_at": DateTime.fromISO(release.published_at).toLocaleString(DateTime.DATETIME_MED),
         "deprecated": release.prerelease,
@@ -96,7 +96,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     return [{
       "tag_name": "Error",
       "published_at": "Error",
-      "link": "#",
+      "assetId": "#",
       "id": "#",
       "deprecated": false,
       "latest": false
