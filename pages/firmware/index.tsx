@@ -2,12 +2,12 @@ import Head from 'next/head'
 import { Octokit } from "@octokit/rest";
 import { GetStaticProps } from 'next'
 import styles from '../../styles/Firmware.module.css'
-import {LatestRelease, Deprecated} from '../../components/tags'
+import { LatestRelease, Deprecated } from '../../components/tags'
 import { DateTime } from 'luxon';
 import { useEffect } from 'react';
 import Link from 'next/link'
 
-function Firmware({releases}) {
+function Firmware({ releases }) {
 
   return (
     <div className={styles.container}>
@@ -25,19 +25,19 @@ function Firmware({releases}) {
           Here you can download see the previous versions of firmware.
         </p>
 
-         <table className={styles.grid}>
+        <table className={styles.grid}>
           {
-          releases.map(release => {
+            releases.map(release => {
 
-            return <div className={styles.card} key={release.id}>
-              <div className={styles.description}>Version {release.tag_name}</div>
-              <div className={styles.indicator}>{release.deprecated ? <Deprecated/> : ""}{release.latest ? <LatestRelease/> : ""}</div>
-              <div className={styles.indicator}>{release.published_at}</div>
-              <div className={styles.buttons}><a href={release.link} className={styles.a}>Download</a><Link href={"/firmware/" + release.id}><a className={styles.a}>View Details</a></Link></div>
-            </div>;
+              return <div className={styles.card} key={release.id}>
+                <div className={styles.description}>Version {release.tag_name}</div>
+                <div className={styles.indicator}>{release.deprecated ? <Deprecated /> : ""}{release.latest ? <LatestRelease /> : ""}</div>
+                <div className={styles.indicator}>{release.published_at}</div>
+                <div className={styles.buttons}><a href={release.link} className={styles.a}>Download</a><Link href={"/firmware/" + release.id}><a className={styles.a}>View Details</a></Link></div>
+              </div>;
 
-          })}
-        </table> 
+            })}
+        </table>
       </main>
 
       <footer className={styles.footer}>
@@ -57,52 +57,52 @@ function Firmware({releases}) {
 export const getStaticProps: GetStaticProps = async (context) => {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library
-    var releases = [];
+  var releases = [];
 
-    const octokit = new Octokit(
-      {auth: process.env.GH_TOKEN}
-    );
+  const octokit = new Octokit(
+    { auth: process.env.GH_TOKEN }
+  );
 
-    await octokit.rest.repos.listReleases({
-      owner: "wego-technologies", 
-      repo: "gatego-Unified",
-    }) .then(({ data }) => {
-      
-      releases = data.map((release) =>{
-        var index = data.indexOf(release)
-        var latest = false;
+  await octokit.rest.repos.listReleases({
+    owner: "wego-technologies",
+    repo: "gatego-Unified",
+  }).then(({ data }) => {
 
-        var link = "#";
-        if(release.assets.length != 0){
-          link = release.assets[0].browser_download_url
-        }
+    releases = data.map((release) => {
+      var index = data.indexOf(release)
+      var latest = false;
 
-        if(index == 0){
-          latest=true
-        }
-        
-        return {
-          "link": link,
-          "tag_name": release.tag_name,
-          "published_at": DateTime.fromISO(release.published_at).toLocaleString(DateTime.DATETIME_MED),
-          "deprecated": release.prerelease,
-          "latest": latest,
-          "id": release.id
-        }
-      })
-      
-    }).catch(({err})=>{
-      
-      return [{
-          "tag_name": "Error",
-          "published_at": "Error",
-          "link": "#",
-          "id": "#",
-          "deprecated": false,
-          "latest": false
-        }]
+      var link = "#";
+      if (release.assets.length != 0) {
+        link = release.assets[0].browser_download_url
+      }
 
-    });
+      if (index == 0) {
+        latest = true
+      }
+
+      return {
+        "link": link,
+        "tag_name": release.tag_name,
+        "published_at": DateTime.fromISO(release.published_at).toLocaleString(DateTime.DATETIME_MED),
+        "deprecated": release.prerelease,
+        "latest": latest,
+        "id": release.id
+      }
+    })
+
+  }).catch(({ err }) => {
+
+    return [{
+      "tag_name": "Error",
+      "published_at": "Error",
+      "link": "#",
+      "id": "#",
+      "deprecated": false,
+      "latest": false
+    }]
+
+  });
 
 
   // By returning { props: { posts } }, the Blog component
