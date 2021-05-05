@@ -33,7 +33,7 @@ function Firmware({ releases }) {
                 <div className={styles.description}>Version {release.tag_name}</div>
                 <div className={styles.indicator}>{release.deprecated ? <Deprecated /> : ""}{release.latest ? <LatestRelease /> : ""}</div>
                 <div className={styles.indicator}>{release.published_at}</div>
-                <div className={styles.buttons}><a href={release.link} className={styles.a}>Download</a><Link href={"/firmware/" + release.id}><a className={styles.a}>View Details</a></Link></div>
+                <div className={styles.buttons}><a href={"/api/getRelease/" + release.assets[0].id} className={styles.a}>Download</a><Link href={"/firmware/" + release.id}><a className={styles.a}>View Details</a></Link></div>
               </div>;
 
             })}
