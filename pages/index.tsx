@@ -32,18 +32,17 @@ export default function Home() {
             </a>
           </Link>
 
-          <a href="https://gatego.io" className={styles.card}>
-            <h3>Gatego Home &rarr;</h3>
-            <p>Go to the main gatego website to learn more about gatego.</p>
+          <a href="/firmware-nex.tft" className={styles.card}>
+            <h3>Download UI &rarr;</h3>
+            <p>Get the latest version of the UI by clicking here.</p>
           </a>
 
-          <a
-            href="https://cloud.gatego.io/settings/organization"
-            className={styles.card}
-          >
-            <h3>Gatego Dashboard &rarr;</h3>
-            <p>This is the recommended way to update your device.</p>
-          </a>
+          <Link href="/uifirmware">
+            <a className={styles.card}>
+              <h3>UI History &rarr;</h3>
+              <p>Get past gatego UI versions here. Not Recommended.</p>
+            </a>
+          </Link>
 
         </div>
       </main>

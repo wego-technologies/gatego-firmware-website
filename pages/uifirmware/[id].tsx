@@ -75,7 +75,7 @@ function FirmwareDetails({ release }) {
           <text className={styles.details}>The gatego team</text>
 
           <h3>Download</h3>
-          <a href={"/api/getRelease/" + release.assets[0].id} className={styles.a}>Download</a>
+          <a href={"/api/getRelease/" + release.assets[0].id + "?repo=gatego-unified-screen"} className={styles.a}>Download</a>
         </div>
 
       </div>
@@ -102,7 +102,7 @@ export async function getStaticPaths() {
 
   var data = await octokit.rest.repos.listReleases({
     owner: "wego-technologies",
-    repo: "gatego-Unified",
+    repo: "gatego-unified-screen",
   })
 
   const paths = data.data.map((release) => ({
@@ -129,18 +129,13 @@ export async function getStaticProps({ params }) {
 
   var data = await octokit.rest.repos.getRelease({
     owner: "wego-technologies",
-    repo: "gatego-Unified",
+    repo: "gatego-unified-screen",
     release_id: params.id
   })
 
   var release = data.data;
 
   release.published_at = DateTime.fromISO(release.published_at).toLocaleString(DateTime.DATETIME_MED)
-
-  release.body_html = unified()
-    .use(parse)
-    .use(remark2react)
-    .processSync(release.body == "" ? "There is no changelog available for this version" : release.body).toString();
 
   return {
     props: { release },
