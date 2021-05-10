@@ -7,10 +7,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   const pid = req.query["id"].toString();
   var repo = req.query["repo"].toString();
 
-  if (repo == null) {
-    repo = "gatego-Unified";
-  }
-
   if (repo != "gatego-Unified" && repo != "gatego-unified-screen") {
     res.status(403).send("Forbidden");
     return;
