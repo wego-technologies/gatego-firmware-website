@@ -75,7 +75,7 @@ function FirmwareDetails({ release }) {
           <text className={styles.details}>The gatego team</text>
 
           <h3>Download</h3>
-          <a href={"/api/getRelease/" + release.assets[0].id} className={styles.a}>Download</a>
+          <a href={"/api/getRelease/" + release.assets[0].id + "?repo=gatego-Unified"} className={styles.a}>Download</a>
         </div>
 
       </div>
