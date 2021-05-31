@@ -8,7 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@octokit/rest": "^18.5.4",
+    "@octokit/rest": "^18.5.5",
     "luxon": "^1.27.0",
     "next": "10.2.3",
     "nprogress": "^0.2.0",
