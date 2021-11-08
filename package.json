@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@octokit/rest": "^18.12.0",
-    "luxon": "^2.0.2",
+    "luxon": "^2.1.0",
     "next": "12.0.1",
     "nprogress": "^0.2.0",
     "preact": "^10.5.15",
