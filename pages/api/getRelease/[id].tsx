@@ -4,7 +4,7 @@ import { Octokit } from "@octokit/rest";
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  const pid = req.query["id"].toString();
+  var pid = req.query["id"].toString();
   var repo = req.query["repo"].toString();
 
   if (repo != "gatego-Unified" && repo != "gatego-unified-screen") {
@@ -16,11 +16,14 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     auth: process.env.GH_TOKEN
   });
 
-  const data = await octokit.rest.repos.getReleaseAsset({
+  const data = pid != "latest" ? await octokit.rest.repos.getReleaseAsset({
     owner: "wego-technologies",
     repo: repo,
     asset_id: parseInt(pid),
     headers: { "Accept": "application/octet-stream" },
+  }) : await octokit.rest.repos.getLatestRelease({
+    owner: "wego-technologies",
+    repo: repo,
   })
 
   if (data.status == 200) {
