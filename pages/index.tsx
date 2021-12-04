@@ -20,7 +20,7 @@ export default function Home() {
         </p>
 
         <div className={styles.grid}>
-          <a href="/firmware.bin" className={styles.card}>
+          <a href={"/api/getRelease/latest?repo=gatego-Unified"} className={styles.card}>
             <h3>Download &rarr;</h3>
             <p>Get the latest version of the firmware by clicking here.</p>
           </a>
@@ -32,7 +32,7 @@ export default function Home() {
             </a>
           </Link>
 
-          <a href="/firmware-nex.tft" className={styles.card}>
+          <a href={"/api/getRelease/latest?repo=gatego-unified-screen"} className={styles.card}>
             <h3>Download UI &rarr;</h3>
             <p>Get the latest version of the UI by clicking here.</p>
           </a>
