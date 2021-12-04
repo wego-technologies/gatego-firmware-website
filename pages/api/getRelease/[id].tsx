@@ -24,6 +24,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   }) : await octokit.rest.repos.getLatestRelease({
     owner: "wego-technologies",
     repo: repo,
+    headers: { "Accept": "application/octet-stream" },
   })
 
   if (data.status == 200) {
